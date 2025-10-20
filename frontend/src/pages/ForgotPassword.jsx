@@ -1,4 +1,3 @@
-// src/pages/ForgotPassword.jsx
 import { useState } from 'react';
 import api from '../api/api';
 import { Link } from 'react-router-dom';
@@ -7,34 +6,90 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [ok, setOk] = useState(false);
   const [err, setErr] = useState('');
+  const [busy, setBusy] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
     setErr('');
+    setOk(false);
+    setBusy(true);
     try {
       await api.post('/auth/forgot-password', { email });
       setOk(true);
     } catch {
       setErr('Failed to send OTP');
+    } finally {
+      setBusy(false);
     }
   };
 
   return (
-    <div className="card max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">Forgot Password</h2>
-      <form onSubmit={submit} className="space-y-3">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Email</label>
-          <input className="input" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-md">
+        <div className="rounded-2xl border border-gray-200/60 dark:border-gray-700 bg-white/80 dark:bg-gray-900/60 backdrop-blur shadow-xl p-8">
+          <div className="text-center mb-6">
+            <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">Forgot Password</h2>
+            <p className="mt-1 text-gray-600 dark:text-gray-300">We’ll send an OTP to your email</p>
+          </div>
+
+          <form onSubmit={submit} className="space-y-4">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
+              <div className="relative mt-1">
+                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21.75 7.5l-9.75 6-9.75-6m19.5 9V7.5a2.25 2.25 0 00-2.25-2.25H4.5A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25h15a2.25 2.25 0 002.25-2.25z" />
+                  </svg>
+                </span>
+                <input
+                  id="email"
+                  type="email"
+                  className="block w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 px-3 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-900 dark:text-gray-100"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
+                />
+              </div>
+            </div>
+
+            {err && (
+              <div className="rounded-md border border-red-200 bg-red-50 text-red-700 px-3 py-2 text-sm" role="alert" aria-live="polite">
+                {err}
+              </div>
+            )}
+
+            <button
+              className="inline-flex items-center justify-center w-full rounded-lg bg-indigo-600 text-white font-medium py-2.5 px-4 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition"
+              disabled={busy}
+            >
+              {busy ? (
+                <>
+                  <svg className="mr-2 h-5 w-5 animate-spin text-white/90" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                  </svg>
+                  Sending...
+                </>
+              ) : (
+                'Send OTP'
+              )}
+            </button>
+          </form>
+
+          {ok && (
+            <div className="mt-4 rounded-md border border-emerald-200 bg-emerald-50 text-emerald-700 px-3 py-2 text-sm" role="status" aria-live="polite">
+              Check your email for the OTP. Then proceed to{' '}
+              <Link to="/otp-verify" className="font-medium text-emerald-700 underline">Verify OTP</Link>.
+            </div>
+          )}
+
+          <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
+            Remembered your password?{' '}
+            <Link to="/login" className="text-indigo-600 hover:text-indigo-700">Back to login</Link>
+          </div>
         </div>
-        {err && <div className="error">{err}</div>}
-        <button className="btn w-full">Send OTP</button>
-      </form>
-      {ok && (
-        <div className="info mt-3">
-          Check your email for the OTP. Then proceed to <Link to="/otp-verify" className="text-blue-600 hover:underline">Verify OTP</Link>.
-        </div>
-      )}
+      </div>
     </div>
   );
 }

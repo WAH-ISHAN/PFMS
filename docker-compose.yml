@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: finance-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - ORACLE_USER=app_user
+      - ORACLE_PASS=app_pass
+      - ORACLE_DB=XE
+      - WSO2_JWKS_URL=https://wso2am:9443/oauth2/jwks
+      - WSO2_EXPECTED_ISS=https://wso2am:9443/oauth2/token
+      - WSO2_EXPECTED_AUD=replace_with_client_id
+    depends_on:
+      - oracle
+    networks:
+      - finance-net
+
+  frontend:
+    build: ./frontend
+    container_name: finance-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8280/finance/1.0
+      - VITE_WSO2_AUTH_URL=https://localhost:9443/oauth2/authorize
+      - VITE_WSO2_TOKEN_URL=https://localhost:9443/oauth2/token
+      - VITE_WSO2_CLIENT_ID=replace_with_client_id
+      - VITE_WSO2_REDIRECT_URI=http://localhost:3000/callback
+      - VITE_USE_WSO2_LOGIN=true
+    networks:
+      - finance-net
+
+  wso2am:
+    image: wso2/wso2am:4.5.0
+    container_name: wso2apim
+    ports:
+      - "9443:9443"     # HTTPS Admin/Dev Portal
+      - "8280:8280"     # HTTP Gateway
+      - "8243:8243"     # HTTPS Gateway
+    environment:
+      - JAVA_OPTS=-Duser.timezone=Asia/Colombo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - finance-net
+
+  oracle:
+    image: gvenzl/oracle-xe
+    container_name: oracle-xe
+    ports:
+      - "1521:1521"
+    environment:
+      - ORACLE_PASSWORD=admin
+      - APP_USER=app_user
+      - APP_USER_PASSWORD=app_pass
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    networks:
+      - finance-net
+
+networks:
+  finance-net:
+
+volumes:
+  oracle-data:
