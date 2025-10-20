@@ -294,39 +294,39 @@ npm run dev
 
 ---
 
-## **Screenshots / Demo**
+## Screenshots / Demo
 
-*<!-- Screenshots Gallery -->
-*WSO2 Api Manger 
-<img src="IMG/Screenshot 2025-10-19 200633.png" width="400" />
-<img src="IMG/Screenshot 2025-10-19 201634.png" width="400" />
-<img src="IMG/Screenshot 2025-10-19 201926.png" width="400" />
-<img src="IMG/Screenshot 2025-10-19 201936.png" width="400" />
-<img src="IMG/Screenshot 2025-10-19 202203.png" width="400" />
-<img src="IMG/Screenshot 2025-10-19 202432.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 125624.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 125632.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 125653.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 125708.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 125715.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 125725.png" width="400" />
-
-*The Application UI 
-<img src="IMG/Screenshot 2025-10-20 143743.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 143749.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 143759.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 143812.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 143818.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 143825.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 143849.png" width="400" />
-
-* The Admin Panle
-<img src="IMG/Screenshot 2025-10-20 145720.png" width="400" />
-<img src="IMG/Screenshot 2025-10-20 145729.png" width="400" />
-
-*
+### WSO2 API Manager
+<img src="IMG/Screenshot 2025-10-19 200633.png" width="400" alt="WSO2 Screenshot 1" />
+<img src="IMG/Screenshot 2025-10-19 201634.png" width="400" alt="WSO2 Screenshot 2" />
+<img src="IMG/Screenshot 2025-10-19 201926.png" width="400" alt="WSO2 Screenshot 3" />
+<img src="IMG/Screenshot 2025-10-19 201936.png" width="400" alt="WSO2 Screenshot 4" />
+<img src="IMG/Screenshot 2025-10-19 202203.png" width="400" alt="WSO2 Screenshot 5" />
+<img src="IMG/Screenshot 2025-10-19 202432.png" width="400" alt="WSO2 Screenshot 6" />
+<img src="IMG/Screenshot 2025-10-20 125624.png" width="400" alt="WSO2 Screenshot 7" />
+<img src="IMG/Screenshot 2025-10-20 125632.png" width="400" alt="WSO2 Screenshot 8" />
+<img src="IMG/Screenshot 2025-10-20 125653.png" width="400" alt="WSO2 Screenshot 9" />
+<img src="IMG/Screenshot 2025-10-20 125708.png" width="400" alt="WSO2 Screenshot 10" />
+<img src="IMG/Screenshot 2025-10-20 125715.png" width="400" alt="WSO2 Screenshot 11" />
+<img src="IMG/Screenshot 2025-10-20 125725.png" width="400" alt="WSO2 Screenshot 12" />
 
 ---
+
+### Application UI
+<img src="IMG/Screenshot 2025-10-20 143743.png" width="400" alt="App Screenshot 1" />
+<img src="IMG/Screenshot 2025-10-20 143749.png" width="400" alt="App Screenshot 2" />
+<img src="IMG/Screenshot 2025-10-20 143759.png" width="400" alt="App Screenshot 3" />
+<img src="IMG/Screenshot 2025-10-20 143812.png" width="400" alt="App Screenshot 4" />
+<img src="IMG/Screenshot 2025-10-20 143818.png" width="400" alt="App Screenshot 5" />
+<img src="IMG/Screenshot 2025-10-20 143825.png" width="400" alt="App Screenshot 6" />
+<img src="IMG/Screenshot 2025-10-20 143849.png" width="400" alt="App Screenshot 7" />
+
+---
+
+### Admin Panel
+<img src="IMG/Screenshot 2025-10-20 145720.png" width="400" alt="Admin Panel Screenshot 1" />
+<img src="IMG/Screenshot 2025-10-20 145729.png" width="400" alt="Admin Panel Screenshot 2" />
+
 
 ## **License**
 MIT License © [W.A.H.ISHAN]
