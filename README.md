@@ -323,10 +323,6 @@ npm run dev
 
 ## **License**
 
-MIT License © [Your Name]
+MIT License © [W.A.H.ISHAN]
 
 ---
-
-I can also **add badges, GIF demo placeholders, and a “Project Architecture Diagram” section** so your README looks **super professional for GitHub**.
-
-Do you want me to do that next?
