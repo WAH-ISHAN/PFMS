@@ -1,5 +1,4 @@
-// src/App.jsx
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -19,10 +18,15 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 
 export default function App() {
+  const location = useLocation();
+  const AUTH_ROUTES = ['/login', '/register', '/forgot-password', '/otp-verify'];
+  const isAuthPage = AUTH_ROUTES.includes(location.pathname);
+
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className="min-h-screen flex flex-col text-gray-800 dark:text-gray-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900">
       <Navbar />
-      <main className="container py-6">
+
+      <main className={isAuthPage ? 'flex-1' : 'flex-1 max-w-7xl mx-auto px-4 md:px-6 py-6'}>
         <Routes>
           <Route path="/" element={<Home />} />
 
@@ -49,6 +53,7 @@ export default function App() {
           </Route>
         </Routes>
       </main>
+
       <Footer />
     </div>
   );

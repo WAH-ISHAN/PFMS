@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: Personal Finance API
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000
+paths:
+  /health:
+    get:
+      summary: Health
+      security: []
+      responses:
+        '200': { description: OK }
+
+  /public/contact:
+    post:
+      summary: Contact
+      security: []
+      responses: { '201': { description: Created } }
+
+  /user/profile:
+    get:
+      security: [ { oauth2: [ user.read ] } ]
+      responses: { '200': { description: OK } }
+  /user/export:
+    get:
+      security: [ { oauth2: [ user.read ] } ]
+      responses: { '200': { description: OK } }
+  /user/backup:
+    get:
+      security: [ { oauth2: [ user.read ] } ]
+      responses: { '200': { description: OK } }
+
+  /expenses:
+    get:
+      security: [ { oauth2: [ user.read ] } ]
+      responses: { '200': { description: OK } }
+    post:
+      security: [ { oauth2: [ user.write ] } ]
+      responses: { '201': { description: Created } }
+  /expenses/{id}:
+    put:
+      security: [ { oauth2: [ user.write ] } ]
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+      responses: { '200': { description: OK } }
+    delete:
+      security: [ { oauth2: [ user.write ] } ]
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+      responses: { '200': { description: OK } }
+
+  /budgets:
+    get:
+      security: [ { oauth2: [ user.read ] } ]
+      responses: { '200': { description: OK } }
+    post:
+      security: [ { oauth2: [ user.write ] } ]
+      responses: { '201': { description: Created } }
+  /budgets/{id}:
+    put:
+      security: [ { oauth2: [ user.write ] } ]
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+      responses: { '200': { description: OK } }
+    delete:
+      security: [ { oauth2: [ user.write ] } ]
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+      responses: { '200': { description: OK } }
+
+  /savings:
+    get:
+      security: [ { oauth2: [ user.read ] } ]
+      responses: { '200': { description: OK } }
+    post:
+      security: [ { oauth2: [ user.write ] } ]
+      responses: { '201': { description: Created } }
+  /savings/{id}:
+    put:
+      security: [ { oauth2: [ user.write ] } ]
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+      responses: { '200': { description: OK } }
+    delete:
+      security: [ { oauth2: [ user.write ] } ]
+      parameters: [ { in: path, name: id, required: true, schema: { type: integer } } ]
+      responses: { '200': { description: OK } }
+
+  /admin/users:
+    get:
+      security: [ { oauth2: [ admin.read ] } ]
+      responses: { '200': { description: OK } }
+  /admin/stats:
+    get:
+      security: [ { oauth2: [ admin.read ] } ]
+      responses: { '200': { description: OK } }
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://localhost:9443/oauth2/authorize
+          tokenUrl: https://localhost:9443/oauth2/token
+          scopes:
+            user.read: "Read user data"
+            user.write: "Write user data"
+            admin.read: "Read admin data"
+            admin.write: "Write admin data"
+            blog.read: "Read blog"
+            blog.write: "Write blog"

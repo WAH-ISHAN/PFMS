@@ -1,4 +1,3 @@
-// src/components/GoogleLoginButton.jsx
 import { useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 
@@ -8,7 +7,9 @@ export default function GoogleLoginButton({ onSuccess }) {
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   useEffect(() => {
-    if (!window.google || !clientId || !divRef.current) return;
+    if (!clientId || !divRef.current) return;
+    if (!(window && window.google && window.google.accounts && window.google.accounts.id)) return;
+
     window.google.accounts.id.initialize({
       client_id: clientId,
       callback: async (response) => {
@@ -18,15 +19,26 @@ export default function GoogleLoginButton({ onSuccess }) {
         } catch {
           alert('Google login failed');
         }
-      }
+      },
     });
+
     window.google.accounts.id.renderButton(divRef.current, {
+      type: 'standard',
       theme: 'outline',
       size: 'large',
-      text: 'signin_with'
+      text: 'signin_with',
+      shape: 'pill',
+      logo_alignment: 'left',
+      // width works for 'standard' type; comment it out if sizing looks off
+      width: 320,
     });
-  }, [clientId, googleLogin]);
+  }, [clientId, googleLogin, onSuccess]);
 
   if (!clientId) return null;
-  return <div ref={divRef}></div>;
+
+  return (
+    <div className="w-full flex justify-center">
+      <div ref={divRef} />
+    </div>
+  );
 }

@@ -1,9 +1,13 @@
 // config/db.js
-// Oracle DB pool and helper execute function.
+// Oracle DB pool and helper execute function. CLOBs returned as strings globally.
 
 const oracledb = require('oracledb');
 
-oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT; // Return rows as JS objects
+// Return rows as JS objects
+oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+
+// Fix for CLOB columns (e.g., blog_posts.content): return as plain strings
+oracledb.fetchAsString = [oracledb.CLOB];
 
 let pool;
 
@@ -27,14 +31,20 @@ async function initPool() {
 /**
  * Execute a SQL statement with named binds and options.
  * Automatically opens/closes a connection and commits non-SELECT statements.
+ * You can pass extra oracledb options via `options` (e.g., fetchInfo).
  */
 async function execute(sql, binds = {}, options = {}) {
   const connection = await pool.getConnection();
   try {
-    const result = await connection.execute(sql, binds, {
+    const execOptions = {
+      // Defaults
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
       autoCommit: options.autoCommit ?? true,
-      outFormat: oracledb.OUT_FORMAT_OBJECT
-    });
+      // Allow caller to override/extend (e.g., fetchInfo)
+      ...options
+    };
+
+    const result = await connection.execute(sql, binds, execOptions);
     return result;
   } catch (err) {
     // For DML we might have to rollback
