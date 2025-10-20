@@ -297,6 +297,7 @@ npm run dev
 ## **Screenshots / Demo**
 
 *<!-- Screenshots Gallery -->
+*WSO2 Api Manger 
 <img src="IMG/Screenshot 2025-10-19 200633.png" width="400" />
 <img src="IMG/Screenshot 2025-10-19 201634.png" width="400" />
 <img src="IMG/Screenshot 2025-10-19 201926.png" width="400" />
@@ -309,6 +310,8 @@ npm run dev
 <img src="IMG/Screenshot 2025-10-20 125708.png" width="400" />
 <img src="IMG/Screenshot 2025-10-20 125715.png" width="400" />
 <img src="IMG/Screenshot 2025-10-20 125725.png" width="400" />
+
+*The Application UI 
 <img src="IMG/Screenshot 2025-10-20 143743.png" width="400" />
 <img src="IMG/Screenshot 2025-10-20 143749.png" width="400" />
 <img src="IMG/Screenshot 2025-10-20 143759.png" width="400" />
@@ -316,6 +319,10 @@ npm run dev
 <img src="IMG/Screenshot 2025-10-20 143818.png" width="400" />
 <img src="IMG/Screenshot 2025-10-20 143825.png" width="400" />
 <img src="IMG/Screenshot 2025-10-20 143849.png" width="400" />
+
+* The Admin Panle
+<img src="IMG/Screenshot 2025-10-20 145720.png" width="400" />
+<img src="IMG/Screenshot 2025-10-20 145729.png" width="400" />
 
 *
 
